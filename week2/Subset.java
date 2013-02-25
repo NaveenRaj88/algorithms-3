@@ -1,18 +1,26 @@
 public class Subset {
     public static void main(String[] args) {
+
+        if (args.length < 1) {
+            throw new IllegalArgumentException("one argument is expected!");
+        }
+
         int k = -1;
-        if (args.length > 0) {
-            k = Integer.parseInt(args[0]);
-        }
+        k = Integer.parseInt(args[0]);
         RandomizedQueue<String> rq = new RandomizedQueue<String>();
+
+        String[] userInput = StdIn.readStrings();
+
+        for (int i = 0; i < userInput.length; i++) {
+            rq.enqueue(userInput[i]);
+        }
+
+        if (k > userInput.length) {
+            k = userInput.length;
+        }
         for (int i = 0; i < k; i++) {
-            String temp = StdIn.readString();
-            StdOut.println(temp);            
-            rq.enqueue(temp);            
+            System.out.println(rq.dequeue());
         }
-        //NPE - because iterator is not implemented
-        for (String item : rq) {
-            StdOut.println(item);
-        }
+
     }
 }
